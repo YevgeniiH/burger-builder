@@ -12,13 +12,14 @@ const Toolbar = props => (
             <Logo />
         </div>
         <nav className={classes.DesktopOnly}>
-            <NavigationItems />
+            <NavigationItems isAuthenticated={props.isAuth} />
         </nav>
     </header>
 );
 
 Toolbar.propTypes = {
-    menuClicked: PropTypes.func
+    menuClicked: PropTypes.func,
+    isAuth: PropTypes.bool
 };
 
 export default Toolbar;
