@@ -16,7 +16,7 @@ class Modal extends Component {
             <Auxilary>
                 <Backdrop
                     show={this.props.show}
-                    hide={this.props.cancel} />,
+                    hide={this.props.cancel} />
                 <div
                     className={classes.Modal}
                     style={{
