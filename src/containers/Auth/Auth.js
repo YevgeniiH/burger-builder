@@ -39,8 +39,7 @@ class Auth extends Component {
                 isValid: false,
                 touched: false
             }
-        },
-        isSignUp: true
+        }
     }
 
     componentDidMount() {
@@ -61,15 +60,14 @@ class Auth extends Component {
         this.setState({ controls: updatedControls });
     }
 
-    submitHandler = (event) => {
+    loginHandler = (event) => {
         event.preventDefault();
-        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignUp);
+        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, false);
     }
 
-    swithAuthModeHandler = () => {
-        this.setState(prevState => {
-            return { isSignUp: !prevState.isSignUp };
-        });
+    registerHandler = (event) => {
+        event.preventDefault();
+        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, true);
     }
 
     render() {
@@ -110,13 +108,11 @@ class Auth extends Component {
             <div className={classes.Auth}>
                 {authRedirect}
                 {errorMessage}
-                <form onSubmit={this.submitHandler}>
+                <form>
                     {form}
-                    <Button btnType="Success">SUBMIT</Button>
+                    <Button btnType="Success" clicked={this.loginHandler}>LOGIN</Button>
+                    <Button btnType="Success" clicked={this.registerHandler}>REGISTER</Button>
                 </form>
-                <Button
-                    btnType="Danger"
-                    clicked={this.swithAuthModeHandler}>SWITCH TO {this.state.isSignUp ? "SIGNIN" : "SIGNUP"}</Button>
             </div>
         );
     }
